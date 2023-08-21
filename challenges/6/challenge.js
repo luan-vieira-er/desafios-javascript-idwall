@@ -46,6 +46,30 @@
 *    ]
  */
 
-const combinate = (set, target) => {}
+const combinate = (set, target) => {
+    const res = [];
+
+    function backtrack(remaining, path, start) {
+        // Se a soma dos valores do caminho excede o alvo, não é uma combinação válida
+        if (remaining < 0) {
+            return;
+        }
+
+        // Se a soma dos valores do caminho é igual ao alvo, adicionamos à lista de resultados
+        if (remaining === 0) {
+            res.push([...path]);
+            return;
+        }
+
+        for (let i = start; i < set.length; i++) {
+            // Cada número é escolhido e prosseguimos para a próxima escolha
+            backtrack(remaining - set[i], [...path, set[i]], i);
+        }
+    }
+
+    backtrack(target, [], 0);
+    return res;
+}
+
 
 module.exports = combinate

@@ -17,6 +17,15 @@
  * a > b sempre.
  */
 
-const MDC = (a, b) => {}
+
+const MDC = (a, b) => {
+    if (b === 0) return a
+    
+    for (let i = b; i > 0 ; i--){
+        if (a % i === 0 && b % i === 0){
+            return i
+        }
+    }
+}
 
 module.exports = MDC
